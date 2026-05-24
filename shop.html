@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Boutique — TryHookMe</title>
+  <meta name="description" content="Créations artisanales en crochet, tricot et broderie. Pièces uniques et personnalisation sur commande."/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/shop.css"/>
+</head>
+<body class="shop">
+
+  <!-- NAVBAR craft + panier + compte -->
+  <nav class="navbar craft-mode" id="navbar">
+    <a href="index.html" class="navbar__logo">
+      <span class="logo-try">Try</span><span class="logo-hook">Hook</span><span class="logo-me">Me</span>
+    </a>
+    <ul class="navbar__links">
+      <li><a href="shop.html" class="active">Boutique</a></li>
+      <li><a href="cyberfolio.html">Cyberfolio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div style="display:flex;align-items:center;gap:0.75rem">
+      <button class="navbar__cart-btn" id="cartOpenBtn" aria-label="Panier">
+        🛒 <span class="cart-label">Panier</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="navbar__cart-btn" id="accountBtn" aria-label="Mon compte" style="border-color:var(--craft-pink)">
+        👤 <span class="cart-label">Compte</span>
+      </button>
+    </div>
+    <button class="navbar__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navbar__mobile" id="mobile-menu">
+      <a href="shop.html">Boutique</a>
+      <a href="cyberfolio.html">Cyberfolio</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </nav>
+
+  <button id="sidebar-toggle">☰ Catégories</button>
+
+  <div class="shop-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar craft-scroll" id="sidebar">
+
+      <h2 class="sidebar__title">Collections</h2>
+      <p class="sidebar__sub">Filtrer par catégorie</p>
+
+      <div class="sidebar__section">
+        <p class="sidebar__section-title">Catégories</p>
+        <ul class="sidebar__menu">
+
+          <li class="sidebar__item active" data-cat="all">
+            <span><span class="icon">🏠</span>Tout voir</span>
+            <span class="count">24</span>
+          </li>
+
+          <li class="sidebar__item" data-cat="crochet" id="toggle-crochet">
+            <span><span class="icon">🧶</span>Crochet</span>
+            <span class="expand-arrow">›</span>
+            <span class="count">10</span>
+          </li>
+          <ul class="sidebar__sub-menu" id="sub-crochet">
+            <li class="sidebar__sub-item" data-subcat="crochet-vetements">Vêtements</li>
+            <li class="sidebar__sub-item" data-subcat="crochet-deco">Décoration</li>
+            <li class="sidebar__sub-item" data-subcat="crochet-accessoires">Accessoires</li>
+            <li class="sidebar__sub-item" data-subcat="crochet-enfant">Enfant & bébé</li>
+          </ul>
+
+          <li class="sidebar__item" data-cat="tricot" id="toggle-tricot">
+            <span><span class="icon">🪡</span>Tricot</span>
+            <span class="expand-arrow">›</span>
+            <span class="count">8</span>
+          </li>
+          <ul class="sidebar__sub-menu" id="sub-tricot">
+            <li class="sidebar__sub-item" data-subcat="tricot-pulls">Pulls & gilets</li>
+            <li class="sidebar__sub-item" data-subcat="tricot-echarpes">Écharpes & bonnets</li>
+            <li class="sidebar__sub-item" data-subcat="tricot-chaussettes">Chaussettes</li>
+          </ul>
+
+          <li class="sidebar__item" data-cat="broderie" id="toggle-broderie">
+            <span><span class="icon">🪢</span>Broderie</span>
+            <span class="expand-arrow">›</span>
+            <span class="count">6</span>
+          </li>
+          <ul class="sidebar__sub-menu" id="sub-broderie">
+            <li class="sidebar__sub-item" data-subcat="broderie-textile">Sur textile</li>
+            <li class="sidebar__sub-item" data-subcat="broderie-cadre">Cadres déco</li>
+            <li class="sidebar__sub-item" data-subcat="broderie-prenom">Prénoms & initiales</li>
+          </ul>
+
+          <li class="sidebar__item" data-cat="deco">
+            <span><span class="icon">🏺</span>Décoration</span>
+            <span class="count">5</span>
+          </li>
+          <li class="sidebar__item" data-cat="vetements">
+            <span><span class="icon">👗</span>Vêtements</span>
+            <span class="count">8</span>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="sidebar__section">
+        <p class="sidebar__section-title">Prix maximum</p>
+        <div class="price-range">
+          <label>
+            <span>0 €</span>
+            <span id="price-val">150 €</span>
+          </label>
+          <input type="range" min="0" max="300" value="150" id="price-range"/>
+        </div>
+      </div>
+
+      <div class="custom-badge" onclick="window.location.href='contact.html?objet=devis-crochet'">
+        <span class="icon">✨</span>
+        <div>
+          <strong style="font-size:0.85rem;color:var(--craft-deep)">Personnalisation</strong>
+          <p style="font-size:0.75rem;margin-top:0.1rem;color:var(--craft-muted)">Demandez un devis sur mesure</p>
+        </div>
+      </div>
+
+      <div class="sidebar__section">
+        <p class="sidebar__section-title">Mon compte</p>
+        <div class="sidebar__account">
+          <button class="account-btn" id="sidebarAccountBtn">👤 Connexion / Inscription</button>
+        </div>
+      </div>
+
+    </aside>
+
+    <!-- MAIN -->
+    <main class="shop-main">
+
+      <div class="shop-hero">
+        <p class="shop-hero__label">Boutique TryHookMe</p>
+        <h1 class="shop-hero__title">
+          Chaque pièce, <em>unique</em><br>comme vous.
+        </h1>
+        <p class="shop-hero__sub">
+          Créations artisanales faites à la main avec amour. Retrouvez mes créations en crochet, tricot et broderie — ou faites-moi part de votre envie pour une commande personnalisée.
+        </p>
+      </div>
+
+      <div class="shop-toolbar">
+        <div class="shop-toolbar__left">
+          <button class="filter-chip active" data-filter="all">Tout</button>
+          <button class="filter-chip" data-filter="new">Nouveautés</button>
+          <button class="filter-chip" data-filter="custom">Sur mesure</button>
+          <span class="shop-count" id="product-count">6 créations</span>
+        </div>
+        <div class="shop-sort">
+          <span>Trier par</span>
+          <select class="form-select" id="sort-select" style="width:auto">
+            <option value="default">Nouveautés</option>
+            <option value="price-asc">Prix croissant</option>
+            <option value="price-desc">Prix décroissant</option>
+          </select>
+        </div>
+      </div>
+
+      <h2 class="shop-section-title">Nouveautés</h2>
+
+      <div class="product-grid" id="product-grid">
+
+        <article class="product-card" data-cat="crochet deco" data-price="38">
+          <div class="product-card__image">
+            <div class="placeholder">🧶</div>
+            <span class="product-card__badge badge--new">Nouveau</span>
+            <button class="product-card__wish" aria-label="Favoris">🤍</button>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__category">Crochet · Décoration</p>
+            <h3 class="product-card__name">Suspension murale bohème</h3>
+            <p class="product-card__desc">Décoration murale en coton recyclé, nœuds macramé et crochet. Fait main, environ 60cm.</p>
+            <div class="product-card__footer">
+              <span class="product-card__price">38 €</span>
+              <button class="product-card__action" data-name="Suspension murale bohème" data-price="38" data-emoji="🧶" aria-label="Ajouter au panier">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-cat="tricot vetements" data-price="75">
+          <div class="product-card__image">
+            <div class="placeholder">🪡</div>
+            <span class="product-card__badge badge--custom">Sur mesure</span>
+            <button class="product-card__wish" aria-label="Favoris">🤍</button>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__category">Tricot · Vêtements</p>
+            <h3 class="product-card__name">Pull oversize douceur</h3>
+            <p class="product-card__desc">Tricot laine mérinos, col roulé, tailles S au XL. Coloris au choix sur commande.</p>
+            <div class="product-card__footer">
+              <span class="product-card__price">75 € <span class="old">90 €</span></span>
+              <button class="product-card__action" data-name="Pull oversize douceur" data-price="75" data-emoji="🪡" aria-label="Ajouter au panier">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-cat="broderie deco" data-price="45">
+          <div class="product-card__image">
+            <div class="placeholder">🪢</div>
+            <button class="product-card__wish" aria-label="Favoris">🤍</button>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__category">Broderie · Cadre</p>
+            <h3 class="product-card__name">Cadre fleuri personnalisé</h3>
+            <p class="product-card__desc">Broderie encadrée, motif floral. Prénom ou citation de votre choix, livré sous 2 semaines.</p>
+            <div class="product-card__footer">
+              <span class="product-card__price">45 €</span>
+              <button class="product-card__action" data-name="Cadre fleuri personnalisé" data-price="45" data-emoji="🪢" aria-label="Ajouter au panier">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-cat="crochet accessoires" data-price="32">
+          <div class="product-card__image">
+            <div class="placeholder">🎀</div>
+            <span class="product-card__badge badge--promo">−20%</span>
+            <button class="product-card__wish" aria-label="Favoris">🤍</button>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__category">Crochet · Accessoires</p>
+            <h3 class="product-card__name">Sac à main filet</h3>
+            <p class="product-card__desc">Sac au crochet en coton naturel, anses bambou, parfait pour l'été.</p>
+            <div class="product-card__footer">
+              <span class="product-card__price">32 € <span class="old">40 €</span></span>
+              <button class="product-card__action" data-name="Sac à main filet" data-price="32" data-emoji="🎀" aria-label="Ajouter au panier">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-cat="crochet enfant" data-price="28">
+          <div class="product-card__image">
+            <div class="placeholder">🧸</div>
+            <span class="product-card__badge badge--custom">Sur mesure</span>
+            <button class="product-card__wish" aria-label="Favoris">🤍</button>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__category">Crochet · Enfant</p>
+            <h3 class="product-card__name">Amigurumi personnalisé</h3>
+            <p class="product-card__desc">Peluche au crochet sur commande. Choisissez l'animal, les couleurs, le prénom brodé.</p>
+            <div class="product-card__footer">
+              <span class="product-card__price">28 €</span>
+              <button class="product-card__action" data-name="Amigurumi personnalisé" data-price="28" data-emoji="🧸" aria-label="Ajouter au panier">+</button>
+            </div>
+          </div>
+        </article>
+
+        <article class="product-card" data-cat="tricot accessoires" data-price="42">
+          <div class="product-card__image">
+            <div class="placeholder">🧣</div>
+            <button class="product-card__wish" aria-label="Favoris">🤍</button>
+          </div>
+          <div class="product-card__info">
+            <p class="product-card__category">Tricot · Accessoires</p>
+            <h3 class="product-card__name">Ensemble bonnet + écharpe</h3>
+            <p class="product-card__desc">Tricot en laine douce, motif côtelé. Plusieurs couleurs disponibles, taille unique.</p>
+            <div class="product-card__footer">
+              <span class="product-card__price">42 €</span>
+              <button class="product-card__action" data-name="Ensemble bonnet + écharpe" data-price="42" data-emoji="🧣" aria-label="Ajouter au panier">+</button>
+            </div>
+          </div>
+        </article>
+
+      </div>
+
+      <div class="devis-banner">
+        <div>
+          <h3 class="devis-banner__title">Vous avez une idée en tête ?</h3>
+          <p class="devis-banner__sub">Je crée sur mesure ! Décrivez-moi votre projet et je vous fais un devis gratuit sous 48h.</p>
+        </div>
+        <a href="contact.html?objet=devis-crochet" class="btn btn-craft" style="flex-shrink:0;background:#fff;color:var(--craft-deep)">
+          Demander un devis →
+        </a>
+      </div>
+
+    </main>
+  </div>
+
+  <footer class="footer craft">
+    <div class="footer__brand">
+      <div class="navbar__logo" style="font-size:1.1rem">
+        <span class="logo-try">Try</span><span class="logo-hook">Hook</span><span class="logo-me">Me</span>
+      </div>
+      <p class="footer__tagline" style="color:rgba(212,133,106,0.7)">Fait main, fait avec amour.</p>
+    </div>
+    <ul class="footer__links" style="color:var(--craft-warm)">
+      <li><a href="shop.html">Boutique</a></li>
+      <li><a href="cyberfolio.html">Cyberfolio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="footer__legal">
+      <p>© 2025 TryHookMe</p>
+      <p>contact@tryhookme.fr</p>
+    </div>
+  </footer>
+
+  <!-- PANIER DRAWER -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer craft-cart" id="cartDrawer">
+    <div class="cart-drawer__header">
+      <h2 class="cart-drawer__title">🛒 Mon panier</h2>
+      <button class="cart-close-btn" id="cartClose">✕</button>
+    </div>
+    <div class="cart-drawer__body" id="cartBody">
+      <div class="cart-empty" id="cartEmpty">
+        <div class="cart-empty-icon">🛍️</div>
+        <p>Votre panier est vide.</p>
+      </div>
+      <div class="cart-items" id="cartItems" style="display:none"></div>
+    </div>
+    <div class="cart-drawer__footer">
+      <div class="cart-summary">
+        <span class="cart-summary__label">Total estimé</span>
+        <span class="cart-summary__total" id="cartTotal">0 €</span>
+      </div>
+      <button class="cart-checkout-btn" id="cartCheckout">Passer commande →</button>
+      <a href="contact.html?objet=devis-crochet" class="cart-devis-link">Ou demander un devis sur mesure</a>
+      <p class="cart-stripe-note">💳 Paiement sécurisé via Stripe (bientôt disponible)</p>
+    </div>
+  </div>
+
+  <!-- MODAL COMPTE -->
+  <div class="auth-modal-overlay" id="authOverlay">
+    <div class="auth-modal" style="position:relative">
+      <button class="auth-modal__close" id="authClose">✕</button>
+      <div class="auth-modal__tabs">
+        <div class="auth-tab active" data-tab="login">Connexion</div>
+        <div class="auth-tab" data-tab="register">Inscription</div>
+      </div>
+      <div class="auth-modal__body" id="authBody">
+        <h2 class="auth-modal__title">Bon retour !</h2>
+        <div class="auth-field">
+          <label class="auth-label">E-mail</label>
+          <input type="email" class="auth-input" placeholder="vous@exemple.fr"/>
+        </div>
+        <div class="auth-field">
+          <label class="auth-label">Mot de passe</label>
+          <input type="password" class="auth-input" placeholder="••••••••"/>
+        </div>
+        <button class="auth-submit" id="authSubmit">Se connecter</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/shop.js"></script>
+</body>
+</html>

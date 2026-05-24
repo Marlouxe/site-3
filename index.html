@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TryHookMe — Créations artisanales & Cyberfolio</title>
+  <meta name="description" content="TryHookMe : créations en crochet, tricot et broderie sur mesure, et création de sites portfolio personnalisés."/>
+  <link rel="stylesheet" href="css/main.css"/>
+  <link rel="stylesheet" href="css/home.css"/>
+</head>
+<body class="home">
+
+  <!-- NAVBAR -->
+  <nav class="navbar split-mode" id="navbar">
+    <a href="index.html" class="navbar__logo">
+      <span class="logo-try">Try</span><span class="logo-hook">Hook</span><span class="logo-me">Me</span>
+    </a>
+    <ul class="navbar__links">
+      <li><a href="shop.html">Boutique</a></li>
+      <li><a href="cyberfolio.html">Cyberfolio</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="navbar__cta">Devis gratuit</a>
+    <button class="navbar__burger" id="burger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="navbar__mobile" id="mobile-menu">
+      <a href="shop.html">Boutique</a>
+      <a href="cyberfolio.html">Cyberfolio</a>
+      <a href="contact.html">Contact</a>
+      <a href="contact.html" class="navbar__cta" style="text-align:center;margin-top:0.5rem">Devis gratuit</a>
+    </div>
+  </nav>
+
+  <!-- HERO SPLIT -->
+  <main class="hero" id="hero">
+
+    <!-- PANEL CRAFT -->
+    <section class="panel panel--craft" id="panel-craft">
+      <div class="blob blob--1"></div>
+      <div class="blob blob--2"></div>
+      <div class="panel__craft-deco">
+        <div class="deco-circle"></div>
+        <div class="deco-circle"></div>
+        <div class="deco-circle"></div>
+        <div class="deco-circle"></div>
+      </div>
+      <div class="panel__content">
+        <p class="panel__eyebrow">Artisanat & Création</p>
+        <h1 class="panel__title">
+          Fait main,<br>
+          fait avec <em>amour</em>
+        </h1>
+        <p class="panel__sub">
+          Crochet, tricot, broderie — des pièces uniques ou personnalisées, créées sur mesure rien que pour vous.
+        </p>
+        <div class="panel__tags">
+          <span class="panel__tag">🧶 Crochet</span>
+          <span class="panel__tag">🪡 Tricot</span>
+          <span class="panel__tag">🪢 Broderie</span>
+          <span class="panel__tag">✨ Personnalisation</span>
+        </div>
+        <div class="panel__cta">
+          <a href="shop.html" class="btn btn-craft">Découvrir la boutique →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIVIDER -->
+    <div class="hero__divider" id="divider">
+      <div class="hero__divider-badge">TRY<br>HOOK<br>ME</div>
+    </div>
+
+    <!-- PANEL CYBER -->
+    <section class="panel panel--cyber" id="panel-cyber">
+      <div class="panel__cyber-deco">
+        <span class="cyber-code">const portfolio = await build(you);</span>
+        <span class="cyber-code">// design → code → deploy</span>
+        <span class="cyber-code">npm run create-magic --user=client</span>
+        <span class="cyber-code">git commit -m "your dream site"</span>
+        <div class="cyber-corner cyber-corner--tl"></div>
+        <div class="cyber-corner cyber-corner--tr"></div>
+        <div class="cyber-corner cyber-corner--bl"></div>
+        <div class="cyber-corner cyber-corner--br"></div>
+        <div class="cyber-particle" style="--dur:7s;--delay:-1s;--tx:25px;--ty:-40px;top:20%;left:15%"></div>
+        <div class="cyber-particle" style="--dur:9s;--delay:-3s;--tx:-20px;--ty:-30px;top:40%;right:20%"></div>
+        <div class="cyber-particle" style="--dur:6s;--delay:-5s;--tx:15px;--ty:25px;bottom:30%;left:30%"></div>
+        <div class="cyber-particle" style="--dur:11s;--delay:-2s;--tx:-30px;--ty:-15px;bottom:20%;right:15%"></div>
+      </div>
+      <div class="panel__content">
+        <p class="panel__eyebrow">Portfolio & Web</p>
+        <h2 class="panel__title">
+          Votre <span class="accent">cyber</span>folio,<br>votre identité.
+        </h2>
+        <p class="panel__sub">
+          Création de sites portfolio sur mesure. Template, PDF, ou 100% original — je code votre vitrine digitale.
+        </p>
+        <div class="panel__tags">
+          <span class="panel__tag">⟨/⟩ From scratch</span>
+          <span class="panel__tag">📄 PDF → Site</span>
+          <span class="panel__tag">🎨 Templates</span>
+        </div>
+        <div class="panel__cta">
+          <a href="cyberfolio.html" class="btn btn-cyber">
+            <span>Explorer les services</span>
+            <span>→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- HINT CLAVIER -->
+  <div id="footer-home-hint">← artisanat &nbsp;|&nbsp; web →</div>
+
+  <!-- PANIER (drawer partagé) -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer craft-cart" id="cartDrawer">
+    <div class="cart-drawer__header">
+      <h2 class="cart-drawer__title">🛒 Mon panier</h2>
+      <button class="cart-close-btn" id="cartClose">✕</button>
+    </div>
+    <div class="cart-drawer__body" id="cartBody">
+      <div class="cart-empty" id="cartEmpty">
+        <div class="cart-empty-icon">🛍️</div>
+        <p>Votre panier est vide.</p>
+      </div>
+      <div class="cart-items" id="cartItems" style="display:none"></div>
+    </div>
+    <div class="cart-drawer__footer">
+      <div class="cart-summary">
+        <span class="cart-summary__label">Total estimé</span>
+        <span class="cart-summary__total" id="cartTotal">0 €</span>
+      </div>
+      <button class="cart-checkout-btn" id="cartCheckout">Passer commande →</button>
+      <a href="contact.html?objet=devis-crochet" class="cart-devis-link">Ou demander un devis sur mesure</a>
+      <p class="cart-stripe-note">💳 Paiement sécurisé via Stripe (bientôt disponible)</p>
+    </div>
+  </div>
+
+  <!-- MODAL COMPTE -->
+  <div class="auth-modal-overlay" id="authOverlay">
+    <div class="auth-modal" style="position:relative">
+      <button class="auth-modal__close" id="authClose">✕</button>
+      <div class="auth-modal__tabs">
+        <div class="auth-tab active" data-tab="login">Connexion</div>
+        <div class="auth-tab" data-tab="register">Inscription</div>
+      </div>
+      <div class="auth-modal__body" id="authBody">
+        <h2 class="auth-modal__title">Bon retour !</h2>
+        <div class="auth-field">
+          <label class="auth-label">E-mail</label>
+          <input type="email" class="auth-input" placeholder="vous@exemple.fr"/>
+        </div>
+        <div class="auth-field">
+          <label class="auth-label">Mot de passe</label>
+          <input type="password" class="auth-input" placeholder="••••••••"/>
+        </div>
+        <button class="auth-submit">Se connecter</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/home.js"></script>
+</body>
+</html>
