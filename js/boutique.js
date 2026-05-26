@@ -31,23 +31,19 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   function applyFilters(catFilter) {
-    const maxPrice = parseInt(document.getElementById('price-range')?.value || 999);
-    let visible = 0;
-    cards.forEach(card => {
-      const cats = card.dataset.cat.split(' ');
-      const price = parseInt(card.dataset.price || 0);
-      const matchCat  = catFilter === 'all' || cats.includes(catFilter);
-      const matchPrice = price <= maxPrice;
-      const show = matchCat && matchPrice;
-      card.style.display = show ? '' : 'none';
-      if (show) {
-        visible++;
-        card.style.animation = 'fadeInCard 0.3s ease forwards';
-      }
-    });
-    const countEl = document.getElementById('product-count');
-    if (countEl) countEl.textContent = visible + ' création' + (visible > 1 ? 's' : '');
-  }
+  const maxPrice = parseInt(document.getElementById('price-range')?.value || 999);
+  let visible = 0;
+  cards.forEach(card => {
+    const cats = (card.dataset.cat || '').split(' ');
+    const price = parseInt(card.dataset.price || 0);
+    const matchCat   = catFilter === 'all' || cats.includes(catFilter);
+    const matchPrice = price <= maxPrice;
+    card.style.display = (matchCat && matchPrice) ? '' : 'none';
+    if (matchCat && matchPrice) visible++;
+  });
+  const countEl = document.getElementById('product-count');
+  if (countEl) countEl.textContent = visible + ' création' + (visible > 1 ? 's' : '');
+}
 
   // ── SIDEBAR TOGGLE MOBILE ────────────────────────
   const sidebarToggle = document.getElementById('sidebarToggle');
@@ -68,10 +64,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (priceRange) {
     priceRange.addEventListener('input', () => {
       if (priceVal) priceVal.textContent = priceRange.value + ' €';
-      const activeFilter = document.querySelector('.sidebar-link.active')?.dataset.filter || 'all';
+      const activeFilter = document.querySelector('.sidebar-link.active[data-filter]')?.dataset.filter || 'all';
       applyFilters(activeFilter);
-    });
-  }
+  });
+}
 
   // ── TRI ──────────────────────────────────────────
   const sortSelect = document.getElementById('sort-select');
@@ -100,36 +96,33 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function updateFavUI() {
-    document.querySelectorAll('.btn-wish').forEach(btn => {
-      const id = btn.dataset.id;
-      const isActive = favorites.includes(id);
-      btn.textContent = isActive ? '❤️' : '🤍';
-      btn.classList.toggle('active', isActive);
-    });
-    // Badge sidebar
-    const countEl = document.getElementById('fav-count-sidebar');
-    if (countEl) {
-      countEl.textContent = favorites.length > 0 ? favorites.length : '';
-      countEl.style.display = favorites.length > 0 ? 'inline' : 'none';
-    }
+  document.querySelectorAll('.btn-wish').forEach(btn => {
+    const id = btn.dataset.id;
+    btn.textContent = favorites.includes(id) ? '❤️' : '🤍';
+    btn.classList.toggle('active', favorites.includes(id));
+  });
+  const countEl = document.getElementById('fav-count-sidebar');
+  if (countEl) {
+    countEl.textContent = favorites.length > 0 ? favorites.length : '';
+    countEl.style.display = favorites.length > 0 ? 'inline' : 'none';
   }
+}
   updateFavUI();
 
   document.querySelectorAll('.btn-wish').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const id = btn.dataset.id;
-      if (favorites.includes(id)) {
-        favorites = favorites.filter(f => f !== id);
-        showToast('Retiré des favoris');
-      } else {
-        favorites.push(id);
-        showToast('❤️ Ajouté aux favoris !');
-      }
-      saveFavorites();
-      updateFavUI();
-    });
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const id = btn.dataset.id;
+    if (favorites.includes(id)) {
+      favorites = favorites.filter(f => f !== id);
+    } else {
+      favorites.push(id);
+    }
+    saveFavorites();   // ← écrit dans localStorage
+    updateFavUI();
+    showToast(favorites.includes(id) ? '❤️ Ajouté aux favoris !' : 'Retiré des favoris');
   });
+});
 
   // ── PANIER ───────────────────────────────────────
   let cart = [];
@@ -147,26 +140,25 @@ document.addEventListener('DOMContentLoaded', () => {
   refreshCartBadge();
 
   document.querySelectorAll('.product-btn-cart').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = {
-        id: btn.dataset.id,
-        name: btn.dataset.name,
-        price: parseInt(btn.dataset.price || 0)
-      };
-      // Éviter les doublons
-      if (!cart.find(c => c.id === item.id)) {
-        cart.push(item);
-        saveCart();
-        refreshCartBadge();
-        showToast('🛒 Ajouté au panier !');
-        const orig = btn.textContent;
-        btn.textContent = '✓';
-        setTimeout(() => btn.textContent = orig, 1400);
-      } else {
-        showToast('Déjà dans le panier');
-      }
-    });
+  btn.addEventListener('click', () => {
+    const item = {
+      id: btn.dataset.id,
+      name: btn.dataset.name,
+      price: parseInt(btn.dataset.price || 0)
+    };
+    if (!cart.find(c => c.id === item.id)) {
+      cart.push(item);
+      saveCart();          // ← écrit dans localStorage
+      refreshCartBadge();
+      showToast('🛒 Ajouté au panier !');
+      const orig = btn.textContent;
+      btn.textContent = '✓';
+      setTimeout(() => btn.textContent = orig, 1400);
+    } else {
+      showToast('Déjà dans le panier');
+    }
   });
+});
 
   // ── ANIMATION CSS ────────────────────────────────
   const styleEl = document.createElement('style');
