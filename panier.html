@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mon Panier – TryHookMe</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/boutique.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+</head>
+<body class="page-boutique">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-craft" id="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-hook">try</span><span class="logo-hook-accent">hook</span><span class="logo-me">me</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="boutique.html">Boutique</a></li>
+      <li><a href="cyberfolio.html">Cyberfolio</a></li>
+      <li><a href="devis-boutique.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="panier.html" class="nav-icon active" aria-label="Panier">
+        🛒<span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <a href="connexion.html" class="nav-icon" aria-label="Mon compte">👤</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="boutique-solo-main">
+
+    <!-- HEADER -->
+    <div class="page-header">
+      <div class="boutique-breadcrumb">
+        <a href="index.html">Accueil</a> / <a href="boutique.html">Boutique</a> / Panier
+      </div>
+      <h1 class="boutique-page-title">🛒 Mon Panier</h1>
+      <p class="boutique-page-sub">Vos articles sélectionnés. Le paiement final se fait via devis personnalisé.</p>
+    </div>
+
+    <!-- PANIER VIDE -->
+    <div id="cart-empty" style="padding:4rem 0; text-align:center; color:var(--craft-text-soft); display:none;">
+      <div style="font-size:3rem; margin-bottom:1rem;">🛒</div>
+      <p style="font-size:1.05rem; margin-bottom:1.5rem;">Votre panier est vide pour l'instant.</p>
+      <a href="boutique.html" style="color:var(--craft-accent); text-decoration:underline; font-size:0.95rem;">
+        Retour à la boutique →
+      </a>
+    </div>
+
+    <!-- LISTE PANIER -->
+    <div id="cart-filled" style="display:none;">
+
+      <div class="cart-list" id="cart-list"></div>
+
+      <!-- RÉSUMÉ -->
+      <div class="cart-summary">
+        <div class="cart-total-label">
+          Total estimé : <strong id="cart-total-amount">0 €</strong>
+          <div style="font-size:0.75rem; color:var(--craft-text-soft); margin-top:0.25rem;">
+            (tarifs de base — le devis précis est gratuit)
+          </div>
+        </div>
+        <a href="devis-boutique.html?sujet=devis-crochet" class="cart-cta-btn">
+          Demander un devis pour ma sélection →
+        </a>
+      </div>
+
+      <!-- VIDER -->
+      <div style="text-align:right; margin-top:1rem;">
+        <button id="clear-cart" style="background:none; border:none; color:var(--craft-text-soft); font-size:0.82rem; cursor:pointer; text-decoration:underline;">
+          Vider le panier
+        </button>
+      </div>
+    </div>
+
+    <!-- SUGGESTIONS -->
+    <div style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--craft-border);">
+      <p style="font-size:0.9rem; color:var(--craft-text-soft); margin-bottom:1rem;">
+        Continuer à explorer →
+      </p>
+      <a href="boutique.html" class="product-btn" style="display:inline-block; padding:0.65rem 1.5rem; margin-right:0.75rem;">
+        Retour à la boutique
+      </a>
+      <a href="favoris.html" class="product-btn" style="display:inline-block; padding:0.65rem 1.5rem;">
+        ♡ Voir mes favoris
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="footer-inner">
+    <p>&copy; 2025 TryHookMe · <a href="mailto:contact@tryhookme.fr">contact@tryhookme.fr</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    let cart = [];
+    try { cart = JSON.parse(localStorage.getItem('thm_cart') || '[]'); } catch(e) {}
+
+    const emptyDiv  = document.getElementById('cart-empty');
+    const filledDiv = document.getElementById('cart-filled');
+    const listEl    = document.getElementById('cart-list');
+    const totalEl   = document.getElementById('cart-total-amount');
+    const clearBtn  = document.getElementById('clear-cart');
+
+    function renderCart() {
+      listEl.innerHTML = '';
+      if (cart.length === 0) {
+        emptyDiv.style.display  = 'block';
+        filledDiv.style.display = 'none';
+        updateCartBadge();
+        return;
+      }
+      emptyDiv.style.display  = 'none';
+      filledDiv.style.display = 'block';
+
+      let total = 0;
+      cart.forEach((item, i) => {
+        total += parseInt(item.price || 0);
+        const row = document.createElement('div');
+        row.className = 'cart-item';
+        row.innerHTML = `
+          <span class="cart-item-name">${item.name}</span>
+          <span class="cart-item-price">À partir de ${item.price} €</span>
+          <button class="cart-item-remove" data-idx="${i}" aria-label="Retirer">✕</button>`;
+        listEl.appendChild(row);
+      });
+
+      totalEl.textContent = 'à partir de ' + total + ' €';
+
+      // Boutons supprimer
+      listEl.querySelectorAll('.cart-item-remove').forEach(btn => {
+        btn.addEventListener('click', () => {
+          cart.splice(parseInt(btn.dataset.idx), 1);
+          localStorage.setItem('thm_cart', JSON.stringify(cart));
+          showToast('Article retiré du panier');
+          renderCart();
+        });
+      });
+
+      updateCartBadge();
+    }
+
+    // Vider tout
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        if (confirm('Vider le panier ?')) {
+          cart = [];
+          localStorage.setItem('thm_cart', JSON.stringify(cart));
+          renderCart();
+        }
+      });
+    }
+
+    renderCart();
+  </script>
+</body>
+</html>

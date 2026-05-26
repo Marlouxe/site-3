@@ -1,0 +1,253 @@
+/* ===================================================
+   TRYHOOKME — PAGES SUPPLÉMENTAIRES
+   Favoris · Panier · Connexion
+   =================================================== */
+
+/* ── PAGE FAVORIS & PANIER (craft) ──────────────────── */
+.page-boutique .boutique-solo-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: calc(var(--navbar-h) + 2.5rem) 2.5rem 4rem;
+}
+
+/* Header breadcrumb */
+.page-header {
+  margin-bottom: 2.5rem;
+}
+.page-header .boutique-breadcrumb { margin-bottom: 0.75rem; }
+.page-header .boutique-page-title { margin-bottom: 0.35rem; }
+
+/* ── PANIER ─────────────────────────────────────────── */
+.cart-list {
+  border: 1px solid var(--craft-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  background: #fff;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--craft-border);
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.cart-item:last-child { border-bottom: none; }
+
+.cart-item-name {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--craft-text);
+  flex: 1;
+}
+.cart-item-price {
+  font-family: var(--font-mono);
+  color: var(--craft-accent);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+.cart-item-remove {
+  background: none;
+  border: none;
+  color: var(--craft-text-soft);
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.25rem;
+  transition: color 0.2s;
+}
+.cart-item-remove:hover { color: #e05c7a; }
+
+.cart-empty-msg {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--craft-text-soft);
+  font-size: 1rem;
+}
+.cart-empty-msg a { color: var(--craft-accent); text-decoration: underline; }
+
+.cart-summary {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+.cart-total-label {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  color: var(--craft-text);
+}
+.cart-total-label strong { color: var(--craft-accent); }
+
+.cart-cta-btn {
+  display: inline-block;
+  padding: 0.85rem 2rem;
+  background: var(--craft-accent);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  transition: background 0.2s, transform 0.2s;
+}
+.cart-cta-btn:hover { background: var(--craft-deep); transform: translateY(-1px); }
+
+/* ── PAGE CONNEXION ─────────────────────────────────── */
+.page-login { background: var(--craft-bg); }
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--navbar-h) + 2rem) 1rem 3rem;
+  background: var(--craft-bg);
+}
+
+.login-card {
+  background: #fff;
+  border: 1px solid var(--craft-border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 8px 40px rgba(58,42,30,0.07);
+}
+
+.login-title {
+  font-family: var(--font-serif);
+  font-size: 1.6rem;
+  text-align: center;
+  color: var(--craft-text);
+  margin-bottom: 0.4rem;
+}
+.login-sub {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--craft-text-soft);
+  margin-bottom: 2rem;
+}
+
+.oauth-btn {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.65rem;
+  border: 1px solid var(--craft-border);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--craft-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s;
+  text-align: left;
+}
+.oauth-btn:hover {
+  background: var(--craft-bg);
+  border-color: var(--craft-accent);
+  transform: translateY(-1px);
+}
+.oauth-btn .oauth-icon { font-size: 1.2rem; flex-shrink: 0; }
+.oauth-btn span { flex: 1; }
+
+.login-divider {
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--craft-text-soft);
+  margin: 1.25rem 0;
+  position: relative;
+}
+.login-divider::before,
+.login-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: var(--craft-border);
+}
+.login-divider::before { left: 0; }
+.login-divider::after  { right: 0; }
+
+.login-email-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.login-input {
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--craft-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  color: var(--craft-text);
+  background: var(--craft-bg);
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+}
+.login-input:focus { border-color: var(--craft-accent); }
+.login-input::placeholder { color: var(--craft-text-soft); opacity: 0.6; }
+
+.login-submit {
+  background: var(--craft-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 0.8rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: background 0.2s, transform 0.15s;
+}
+.login-submit:hover { background: var(--craft-deep); transform: translateY(-1px); }
+
+.login-back {
+  display: block;
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.82rem;
+  color: var(--craft-text-soft);
+  transition: color 0.2s;
+}
+.login-back:hover { color: var(--craft-accent); }
+
+.login-legal {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--craft-border);
+  font-size: 0.72rem;
+  color: var(--craft-text-soft);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ── TOAST NOTIFICATION (partagé) ───────────────────── */
+.toast-notif {
+  position: fixed;
+  bottom: 1.5rem; right: 1.5rem;
+  background: var(--craft-text);
+  color: #fff;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-size: 0.875rem;
+  font-family: var(--font-sans);
+  z-index: 3000;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 0.3s, opacity 0.3s;
+  pointer-events: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  max-width: 280px;
+}
+.toast-notif.show { transform: translateY(0); opacity: 1; }

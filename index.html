@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TryHookMe – Artisanat & Cyberfolio</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-hook">try</span><span class="logo-hook-accent">hook</span><span class="logo-me">me</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="boutique.html">Boutique</a></li>
+      <li><a href="cyberfolio.html">Cyberfolio</a></li>
+      <li><a href="devis-boutique.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="panier.html" class="nav-icon" aria-label="Panier" id="nav-cart">
+        🛒<span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <a href="connexion.html" class="nav-icon" aria-label="Mon compte" title="Se connecter">👤</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO SPLIT -->
+  <main class="split-hero" id="splitHero">
+
+    <!-- CÔTÉ GAUCHE : ARTISANAT -->
+    <section class="panel panel-craft" id="panelCraft" tabindex="0" aria-label="Artisanat – crochet, tricot, broderie">
+      <div class="panel-bg-texture craft-texture"></div>
+      <div class="panel-content">
+        <div class="panel-tag">Artisanat</div>
+        <h1 class="panel-title craft-title">
+          <span>Crochet</span>
+          <span class="italic-span">Tricot</span>
+          <span>Broderie</span>
+        </h1>
+        <p class="panel-sub">Pièces uniques, créations sur mesure & personnalisation à votre image.</p>
+        <a href="boutique.html" class="panel-btn craft-btn">Explorer la boutique</a>
+      </div>
+      <div class="panel-deco craft-deco">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="deco-svg">
+          <path d="M100 10 Q140 50 190 100 Q140 150 100 190 Q60 150 10 100 Q60 50 100 10Z" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.3"/>
+          <circle cx="100" cy="100" r="60" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="4 6" opacity="0.25"/>
+          <circle cx="100" cy="100" r="30" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+        </svg>
+      </div>
+      <div class="panel-arrow">→</div>
+    </section>
+
+    <!-- SÉPARATEUR CENTRAL -->
+    <div class="split-divider" id="splitDivider">
+      <div class="divider-line"></div>
+      <div class="divider-logo">
+        <span>try</span><span class="accent">hook</span><span>me</span>
+      </div>
+      <div class="divider-line"></div>
+    </div>
+
+    <!-- CÔTÉ DROIT : CYBERFOLIO -->
+    <section class="panel panel-cyber" id="panelCyber" tabindex="0" aria-label="Cyberfolio – création web et portfolio">
+      <div class="panel-bg-texture cyber-texture"></div>
+      <div class="panel-content">
+        <div class="panel-tag cyber-tag">Web &amp; Code</div>
+        <h1 class="panel-title cyber-title">
+          <span class="mono-span">&lt;Cyber</span>
+          <span class="mono-span italic-span">folio/&gt;</span>
+        </h1>
+        <p class="panel-sub cyber-sub">Portfolios web sur mesure, templates professionnels, ou retranscription de votre PDF en site.</p>
+        <a href="cyberfolio.html" class="panel-btn cyber-btn">Voir mes créations</a>
+      </div>
+      <div class="panel-deco cyber-deco">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" class="deco-svg cyber-deco-svg">
+          <rect x="20" y="20" width="160" height="160" fill="none" stroke="currentColor" stroke-width="1" opacity="0.2"/>
+          <rect x="40" y="40" width="120" height="120" fill="none" stroke="currentColor" stroke-width="0.8" stroke-dasharray="3 5" opacity="0.2"/>
+          <line x1="20" y1="100" x2="180" y2="100" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
+          <line x1="100" y1="20" x2="100" y2="180" stroke="currentColor" stroke-width="0.6" opacity="0.15"/>
+          <circle cx="100" cy="100" r="8" fill="currentColor" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="panel-arrow">→</div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER MINIMAL -->
+  <footer class="footer-home">
+    <p>&copy; 2025 TryHookMe · <a href="mailto:contact@tryhookme.fr">contact@tryhookme.fr</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

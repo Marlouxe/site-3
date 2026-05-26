@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Devis Cyberfolio – TryHookMe</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+</head>
+<body class="page-devis-cyber">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-cyber" id="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-hook">try</span><span class="logo-hook-accent">hook</span><span class="logo-me">me</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="boutique.html">Boutique</a></li>
+      <li><a href="cyberfolio.html">Cyberfolio</a></li>
+      <li><a href="devis-cyber.html" class="active">Devis web</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="panier.html" class="nav-icon" aria-label="Panier">
+        🛒<span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <a href="connexion.html" class="nav-icon" aria-label="Mon compte">👤</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="contact-page">
+
+    <!-- EN-TÊTE -->
+    <div class="contact-breadcrumb">
+      <a href="index.html">Accueil</a> / <a href="cyberfolio.html">Cyberfolio</a> / Devis
+    </div>
+    <h1 class="contact-title">
+      Votre projet <span class="mono-span" style="color:var(--cyber-accent)">// numérique</span>
+    </h1>
+    <p class="contact-subtitle">
+      Décrivez votre projet de portfolio — je vous réponds sous 48h avec un devis clair, sans jargon.
+    </p>
+
+    <div class="contact-layout">
+
+      <!-- FORMULAIRE -->
+      <div class="contact-form-wrap">
+        <form class="contact-form" id="contactForm" novalidate>
+
+          <div class="form-row two-col">
+            <div class="form-group">
+              <label class="form-label" for="nom">Nom <span class="required">*</span></label>
+              <input class="form-input" type="text" id="nom" placeholder="Votre nom" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email <span class="required">*</span></label>
+              <input class="form-input" type="email" id="email" placeholder="votre@email.fr" required />
+            </div>
+          </div>
+
+          <!-- Type de projet -->
+          <div class="form-group">
+            <label class="form-label" for="sujet">Type de projet <span class="required">*</span></label>
+            <div class="select-wrap">
+              <select class="form-select" id="sujet" required>
+                <option value="" disabled selected>Choisir…</option>
+                <optgroup label="Portfolio web">
+                  <option value="template">Template personnalisé</option>
+                  <option value="sur-mesure">Site sur mesure (brief)</option>
+                  <option value="pdf-site">Retranscription PDF → site</option>
+                </optgroup>
+                <optgroup label="Autre mission">
+                  <option value="refonte">Refonte d'un site existant</option>
+                  <option value="landing">Landing page / page vitrine</option>
+                  <option value="maintenance">Maintenance / mise à jour</option>
+                </optgroup>
+                <optgroup label="Autre">
+                  <option value="question-cyber">Question générale</option>
+                </optgroup>
+              </select>
+              <span class="select-arrow">▾</span>
+            </div>
+          </div>
+
+          <!-- Budget estimé -->
+          <div class="form-group">
+            <label class="form-label" for="budget">Budget estimé <span class="form-hint"> — optionnel</span></label>
+            <div class="select-wrap">
+              <select class="form-select" id="budget">
+                <option value="">Je ne sais pas encore</option>
+                <option value="<100">Moins de 100 €</option>
+                <option value="100-300">100 – 300 €</option>
+                <option value="300-600">300 – 600 €</option>
+                <option value="600+">Plus de 600 €</option>
+              </select>
+              <span class="select-arrow">▾</span>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label class="form-label" for="message">
+              Description du projet <span class="required">*</span>
+              <span class="form-hint"> — activité, style, pages souhaitées, deadline…</span>
+            </label>
+            <textarea class="form-textarea" id="message" placeholder="Ex. : Je suis photographe, j'ai besoin d'un portfolio minimaliste avec galerie filtrable et formulaire de contact. Je vous joins ma maquette Figma…" required></textarea>
+            <span class="char-counter" id="charCounter">0 / 2000</span>
+          </div>
+
+          <!-- Fichiers (maquettes, PDF, inspirations) -->
+          <div class="form-group">
+            <label class="form-label" for="fileInput">
+              Fichiers joints <span class="form-hint"> — maquette, PDF, inspirations · max 20 Mo</span>
+            </label>
+            <div class="file-drop-zone" id="fileDropZone">
+              <input type="file" id="fileInput" class="file-input" multiple accept="image/*,.pdf,.fig,.sketch" />
+              <div class="file-drop-inner">
+                <div class="file-drop-icon">📎</div>
+                <p class="file-drop-text">Glissez vos fichiers ici, ou <span class="file-browse-link">parcourir</span></p>
+                <p class="file-drop-hint">PDF, PNG, JPG, Figma · max 20 Mo total</p>
+              </div>
+              <div class="file-list" id="fileList"></div>
+            </div>
+            <p class="file-warning" id="fileWarning"></p>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-submit-row">
+            <p class="form-legal">Vos données ne sont utilisées que pour vous répondre. Aucun spam, aucune revente.</p>
+            <button class="submit-btn" type="submit" id="submitBtn">
+              Envoyer le brief
+              <span class="submit-arrow">→</span>
+            </button>
+          </div>
+
+        </form>
+
+        <!-- Succès -->
+        <div class="form-success" id="formSuccess" style="display:none;">
+          <div class="success-icon">✓</div>
+          <h2>Brief reçu !</h2>
+          <p>Merci — je lis votre projet et vous reviens avec un devis détaillé sous 48h.</p>
+          <a href="cyberfolio.html" class="back-home-btn">← Retour au Cyberfolio</a>
+        </div>
+      </div>
+
+      <!-- ASIDE INFOS -->
+      <aside class="contact-info">
+        <div class="info-card cyber-card">
+          <p class="info-card-title">✉️ Contact direct</p>
+          <a href="mailto:contact@tryhookme.fr" class="info-email">contact@tryhookme.fr</a>
+          <p class="info-note">Réponse sous 48h en semaine. Devis gratuit, sans engagement.</p>
+        </div>
+        <div class="info-card">
+          <p class="info-card-title">📋 Ce qui aide</p>
+          <ul class="info-list">
+            <li>Votre activité / secteur</li>
+            <li>Exemples de sites que vous aimez</li>
+            <li>Pages souhaitées</li>
+            <li>Deadline de livraison</li>
+            <li>Budget indicatif</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <p class="info-card-title">⚡ Délais indicatifs</p>
+          <ul class="info-list">
+            <li><strong>Template</strong> — 5 jours</li>
+            <li><strong>Sur mesure</strong> — 10–14 jours</li>
+            <li><strong>PDF → Site</strong> — 7–10 jours</li>
+            <li><strong>Refonte</strong> — selon l'existant</li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </div><!-- /contact-page -->
+
+  <footer class="footer-inner footer-cyber">
+    <p>&copy; 2025 TryHookMe · <a href="mailto:contact@tryhookme.fr">contact@tryhookme.fr</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Devis Boutique – TryHookMe</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/contact.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+</head>
+<body class="page-devis-craft">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-craft" id="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-hook">try</span><span class="logo-hook-accent">hook</span><span class="logo-me">me</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="boutique.html">Boutique</a></li>
+      <li><a href="cyberfolio.html">Cyberfolio</a></li>
+      <li><a href="devis-boutique.html" class="active">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="panier.html" class="nav-icon" aria-label="Panier">
+        🛒<span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <a href="connexion.html" class="nav-icon" aria-label="Mon compte">👤</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="contact-page">
+
+    <!-- EN-TÊTE -->
+    <div class="contact-breadcrumb">
+      <a href="index.html">Accueil</a> / <a href="boutique.html">Boutique</a> / Devis
+    </div>
+    <h1 class="contact-title">
+      Votre projet <span style="color:var(--craft-accent)">artisanal</span>
+    </h1>
+    <p class="contact-subtitle">
+      Dites-moi ce que vous souhaitez — crochet, tricot ou broderie — et je vous prépare un devis gratuit sous 48h.
+    </p>
+
+    <div class="contact-layout">
+
+      <!-- FORMULAIRE -->
+      <div class="contact-form-wrap">
+        <form class="contact-form" id="contactForm" novalidate>
+
+          <div class="form-row two-col">
+            <div class="form-group">
+              <label class="form-label" for="nom">Nom <span class="required">*</span></label>
+              <input class="form-input" type="text" id="nom" name="nom" placeholder="Votre nom" required />
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email <span class="required">*</span></label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="votre@email.fr" required />
+            </div>
+          </div>
+
+          <!-- Type de création -->
+          <div class="form-group">
+            <label class="form-label" for="sujet">Type de création <span class="required">*</span></label>
+            <div class="select-wrap">
+              <select class="form-select" id="sujet" name="sujet" required>
+                <option value="" disabled selected>Choisir…</option>
+                <optgroup label="🧶 Crochet">
+                  <option value="devis-crochet">Création crochet (décoration, accessoire…)</option>
+                  <option value="devis-crochet-vetement">Vêtement crochet</option>
+                  <option value="devis-crochet-perso">Personnalisation au crochet</option>
+                </optgroup>
+                <optgroup label="🧣 Tricot">
+                  <option value="devis-tricot">Création tricot (pull, bonnet, écharpe…)</option>
+                  <option value="devis-tricot-perso">Tricot personnalisé sur mesure</option>
+                </optgroup>
+                <optgroup label="🪡 Broderie">
+                  <option value="devis-broderie">Tableau ou cadre brodé</option>
+                  <option value="devis-broderie-vetement">Broderie sur vêtement</option>
+                  <option value="devis-broderie-perso">Broderie personnalisée (prénom, logo…)</option>
+                </optgroup>
+                <optgroup label="Autre">
+                  <option value="question">Question générale</option>
+                  <option value="commande-passee">Question sur une commande passée</option>
+                </optgroup>
+              </select>
+              <span class="select-arrow">▾</span>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label class="form-label" for="message">
+              Description de votre projet <span class="required">*</span>
+              <span class="form-hint"> — couleurs, taille, utilisation, deadline si besoin</span>
+            </label>
+            <textarea class="form-textarea" id="message" name="message" placeholder="Ex. : Je voudrais une suspension murale de 40 cm en laine beige et terracotta pour une chambre…" required></textarea>
+            <span class="char-counter" id="charCounter">0 / 2000</span>
+          </div>
+
+          <!-- Fichiers (inspirations, photos) -->
+          <div class="form-group">
+            <label class="form-label" for="fileInput">
+              Photos / inspirations
+              <span class="form-hint"> — optionnel · max 20 Mo</span>
+            </label>
+            <div class="file-drop-zone" id="fileDropZone">
+              <input type="file" id="fileInput" class="file-input" multiple accept="image/*,.pdf" />
+              <div class="file-drop-inner">
+                <div class="file-drop-icon">📎</div>
+                <p class="file-drop-text">Glissez vos images ici, ou <span class="file-browse-link">parcourir</span></p>
+                <p class="file-drop-hint">JPG, PNG, PDF · max 20 Mo total</p>
+              </div>
+              <div class="file-list" id="fileList"></div>
+            </div>
+            <p class="file-warning" id="fileWarning"></p>
+          </div>
+
+          <!-- Submit -->
+          <div class="form-submit-row">
+            <p class="form-legal">En envoyant ce formulaire, vous acceptez d'être recontacté·e par e-mail. Aucune donnée n'est revendue.</p>
+            <button class="submit-btn" type="submit" id="submitBtn">
+              Envoyer ma demande
+              <span class="submit-arrow">→</span>
+            </button>
+          </div>
+
+        </form>
+
+        <!-- Succès -->
+        <div class="form-success" id="formSuccess" style="display:none;">
+          <div class="success-icon">✓</div>
+          <h2>Demande envoyée !</h2>
+          <p>Merci pour votre message. Je vous répondrai sous 48h avec un devis détaillé.</p>
+          <a href="boutique.html" class="back-home-btn">← Retour à la boutique</a>
+        </div>
+      </div>
+
+      <!-- ASIDE INFOS -->
+      <aside class="contact-info">
+        <div class="info-card craft-card">
+          <p class="info-card-title">✉️ Contact direct</p>
+          <a href="mailto:contact@tryhookme.fr" class="info-email">contact@tryhookme.fr</a>
+          <p class="info-note">Réponse sous 48h, du lundi au vendredi.</p>
+        </div>
+        <div class="info-card">
+          <p class="info-card-title">📋 Ce qui aide</p>
+          <ul class="info-list">
+            <li>Couleurs souhaitées</li>
+            <li>Dimensions / taille</li>
+            <li>Matière préférée (laine, coton…)</li>
+            <li>Photos d'inspiration</li>
+            <li>Date souhaitée de livraison</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <p class="info-card-title">💛 Fonctionnement</p>
+          <ul class="info-list">
+            <li><strong>Devis gratuit</strong> sous 48h</li>
+            <li>Acompte de 30% à la commande</li>
+            <li>Solde à la livraison</li>
+            <li>Retouches incluses</li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </div><!-- /contact-page -->
+
+  <footer class="footer-inner">
+    <p>&copy; 2025 TryHookMe · <a href="mailto:contact@tryhookme.fr">contact@tryhookme.fr</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

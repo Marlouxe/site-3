@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mes Favoris – TryHookMe</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/boutique.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+</head>
+<body class="page-boutique">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-craft" id="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-hook">try</span><span class="logo-hook-accent">hook</span><span class="logo-me">me</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="boutique.html">Boutique</a></li>
+      <li><a href="cyberfolio.html">Cyberfolio</a></li>
+      <li><a href="devis-boutique.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="panier.html" class="nav-icon" aria-label="Panier">
+        🛒<span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <a href="connexion.html" class="nav-icon" aria-label="Mon compte">👤</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <main class="boutique-solo-main">
+
+    <!-- HEADER -->
+    <div class="page-header">
+      <div class="boutique-breadcrumb">
+        <a href="index.html">Accueil</a> / <a href="boutique.html">Boutique</a> / Favoris
+      </div>
+      <h1 class="boutique-page-title">♡ Mes Favoris</h1>
+      <p class="boutique-page-sub" id="fav-subtitle">Vos créations sauvegardées.</p>
+    </div>
+
+    <!-- TOOLBAR -->
+    <div class="boutique-toolbar" id="fav-toolbar" style="display:none">
+      <span class="product-count" id="fav-total">0 article</span>
+      <div class="boutique-sort">
+        <label for="sort-fav">Trier :</label>
+        <select id="sort-fav" class="sort-select">
+          <option value="default">Ordre d'ajout</option>
+          <option value="price-asc">Prix croissant</option>
+          <option value="price-desc">Prix décroissant</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- MESSAGE VIDE -->
+    <div id="fav-empty" style="padding: 4rem 0; text-align:center; color: var(--craft-text-soft);">
+      <div style="font-size:3rem; margin-bottom:1rem;">🤍</div>
+      <p style="font-size:1.05rem; margin-bottom:1.5rem;">Vous n'avez pas encore de favoris.</p>
+      <a href="boutique.html" style="color:var(--craft-accent); text-decoration:underline; font-size:0.95rem;">
+        Explorer la boutique →
+      </a>
+    </div>
+
+    <!-- GRILLE FAVORIS -->
+    <section class="products-grid" id="favGrid"></section>
+
+    <!-- BOUTON RETOUR -->
+    <div style="text-align:center; margin-top:2rem;" id="fav-back" style="display:none">
+      <a href="boutique.html" class="product-btn" style="display:inline-block; padding:0.75rem 2rem;">
+        ← Retour à la boutique
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="footer-inner">
+    <p>&copy; 2025 TryHookMe · <a href="mailto:contact@tryhookme.fr">contact@tryhookme.fr</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // ── Données produits (synchronisées avec boutique.html) ──
+    const PRODUCTS = [
+      { id:'1', name:'Suspension murale boho',    price:35, badge:'Crochet',  badgeClass:'',               emoji:'🧶', desc:'Décoration murale en macramé crocheté, tons naturels.' },
+      { id:'2', name:'Pull cosy sur mesure',       price:80, badge:'Tricot',   badgeClass:'badge-tricot',   emoji:'🧣', desc:'Pull tricoté main, laine douce, coloris & taille au choix.' },
+      { id:'3', name:'Tableau brodé personnalisé', price:45, badge:'Broderie', badgeClass:'badge-broderie', emoji:'🪡', desc:'Portrait, paysage, citation — tout est possible sur tissu.' },
+      { id:'4', name:'Sac cabas crocheté',         price:30, badge:'Crochet',  badgeClass:'',               emoji:'👜', desc:'Sac tressé léger, idéal marché ou plage. Couleur au choix.' },
+      { id:'5', name:'Bonnet & écharpe assortis',  price:40, badge:'Tricot',   badgeClass:'badge-tricot',   emoji:'🧢', desc:'Ensemble tricoté main, douillet pour l\'hiver.' },
+      { id:'6', name:'Personnalisation vêtement',  price:20, badge:'Broderie', badgeClass:'badge-broderie', emoji:'👕', desc:'Envoyez votre vêtement, on y brode votre motif. Unique.' },
+    ];
+
+    let favorites = [];
+    let cart = [];
+    try { favorites = JSON.parse(localStorage.getItem('thm_favorites') || '[]'); } catch(e) {}
+    try { cart = JSON.parse(localStorage.getItem('thm_cart') || '[]'); } catch(e) {}
+
+    const grid    = document.getElementById('favGrid');
+    const empty   = document.getElementById('fav-empty');
+    const toolbar = document.getElementById('fav-toolbar');
+    const total   = document.getElementById('fav-total');
+    const back    = document.getElementById('fav-back');
+    const sortFav = document.getElementById('sort-fav');
+
+    let favProducts = PRODUCTS.filter(p => favorites.includes(p.id));
+
+    function renderGrid(products) {
+      grid.innerHTML = '';
+      if (products.length === 0) {
+        empty.style.display = 'block';
+        toolbar.style.display = 'none';
+        if (back) back.style.display = 'none';
+        return;
+      }
+      empty.style.display = 'none';
+      toolbar.style.display = 'flex';
+      if (back) back.style.display = 'block';
+      total.textContent = products.length + ' article' + (products.length > 1 ? 's' : '') + ' sauvegardé' + (products.length > 1 ? 's' : '');
+
+      products.forEach(p => {
+        const card = document.createElement('article');
+        card.className = 'product-card';
+        card.dataset.price = p.price;
+        card.innerHTML = `
+          <div class="product-img-wrap">
+            <div class="product-img-placeholder">${p.emoji}</div>
+            <span class="product-badge ${p.badgeClass}">${p.badge}</span>
+            <button class="btn-wish active" data-id="${p.id}" aria-label="Retirer des favoris">❤️</button>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">${p.name}</h3>
+            <p class="product-desc">${p.desc}</p>
+            <div class="product-footer">
+              <span class="product-price">À partir de ${p.price} €</span>
+              <div class="product-actions">
+                <a href="devis-boutique.html" class="product-btn product-btn-devis">Devis</a>
+                <button class="product-btn product-btn-cart" data-id="${p.id}" data-name="${p.name}" data-price="${p.price}" aria-label="Ajouter au panier">🛒</button>
+              </div>
+            </div>
+          </div>`;
+        grid.appendChild(card);
+      });
+
+      // Boutons retirer favoris
+      grid.querySelectorAll('.btn-wish').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id;
+          favorites = favorites.filter(f => f !== id);
+          localStorage.setItem('thm_favorites', JSON.stringify(favorites));
+          favProducts = PRODUCTS.filter(p => favorites.includes(p.id));
+          showToast('Retiré des favoris');
+          renderGrid(favProducts);
+        });
+      });
+
+      // Boutons panier
+      grid.querySelectorAll('.product-btn-cart').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const item = { id: btn.dataset.id, name: btn.dataset.name, price: parseInt(btn.dataset.price) };
+          if (!cart.find(c => c.id === item.id)) {
+            cart.push(item);
+            localStorage.setItem('thm_cart', JSON.stringify(cart));
+            updateCartBadge();
+            showToast('🛒 Ajouté au panier !');
+            btn.textContent = '✓';
+            setTimeout(() => btn.textContent = '🛒', 1400);
+          } else {
+            showToast('Déjà dans le panier');
+          }
+        });
+      });
+    }
+
+    // Tri
+    if (sortFav) {
+      sortFav.addEventListener('change', () => {
+        let sorted = [...favProducts];
+        if (sortFav.value === 'price-asc')  sorted.sort((a,b) => a.price - b.price);
+        if (sortFav.value === 'price-desc') sorted.sort((a,b) => b.price - a.price);
+        renderGrid(sorted);
+      });
+    }
+
+    renderGrid(favProducts);
+  </script>
+</body>
+</html>

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cyberfolio – TryHookMe</title>
+  <meta name="description" content="Création de portfolios web sur mesure — artistes, freelances, créatifs. Templates pro ou développement 100% personnalisé." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/cyberfolio.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+</head>
+<body class="page-cyber">
+
+  <!-- NAVBAR -->
+  <nav class="navbar navbar-cyber" id="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-hook">try</span><span class="logo-hook-accent">hook</span><span class="logo-me">me</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="boutique.html">Boutique</a></li>
+      <li><a href="cyberfolio.html" class="active">Cyberfolio</a></li>
+      <li><a href="devis-cyber.html">Devis web</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="panier.html" class="nav-icon" aria-label="Panier">
+        🛒<span class="cart-badge" id="cart-count">0</span>
+      </a>
+      <a href="connexion.html" class="nav-icon" aria-label="Mon compte">👤</a>
+    </div>
+    <button class="nav-burger" id="navBurger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="cyber-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar-cyber" id="sidebar">
+      <button class="sidebar-toggle" id="sidebarToggle">☰ Menu</button>
+      <div class="sidebar-inner">
+        <div class="sidebar-title">// navigation</div>
+        <nav class="sidebar-nav">
+          <a class="sidebar-link" data-section="hero"      href="#hero">      01 / Présentation</a>
+          <a class="sidebar-link" data-section="offres"    href="#offres">    02 / Formules</a>
+          <a class="sidebar-link" data-section="templates" href="#templates"> 03 / Templates</a>
+          <a class="sidebar-link" data-section="portfolio" href="#portfolio"> 04 / Réalisations</a>
+          <a class="sidebar-link" data-section="methode"   href="#methode">   05 / Méthode</a>
+        </nav>
+        <div class="sidebar-separator"></div>
+        <a href="devis-cyber.html" class="cyber-cta-btn">$ demander_devis</a>
+      </div>
+    </aside>
+
+    <!-- CONTENU PRINCIPAL -->
+    <main class="cyber-main">
+
+      <!-- ── HERO (style site1 : votre portfolio, votre code) ── -->
+      <section class="cyber-hero" id="hero" data-section-id="hero">
+        <p class="cyber-hero__prompt">init cyberfolio --client=you</p>
+        <h1 class="cyber-hero__title">
+          Votre portfolio,<br>
+          <span class="accent">votre code.</span><br>
+          <span class="dim">// zéro template générique</span>
+        </h1>
+        <p class="cyber-hero__sub">
+          Je crée des <span class="hl">sites portfolio personnalisés</span> pour artistes, créatifs, freelances et professionnels.
+          Depuis un brief, un PDF, ou un template — chaque site est pensé pour
+          <span class="hl">vous représenter vraiment.</span>
+        </p>
+        <div class="cyber-hero__stats">
+          <div class="cyber-stat">
+            <span class="cyber-stat__num">100%</span>
+            <span class="cyber-stat__label">Sur mesure</span>
+          </div>
+          <div class="cyber-stat">
+            <span class="cyber-stat__num">5–14j</span>
+            <span class="cyber-stat__label">Délai livraison</span>
+          </div>
+          <div class="cyber-stat">
+            <span class="cyber-stat__num">∞</span>
+            <span class="cyber-stat__label">Révisions incluses</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── FORMULES (site2) ── -->
+      <section class="cyber-section" id="offres" data-section-id="offres">
+        <h2 class="cyber-section-title"><span class="mono-span">&gt;</span> Formules</h2>
+        <div class="offers-grid">
+
+          <div class="offer-card">
+            <div class="offer-num">01</div>
+            <h3 class="offer-title">Template</h3>
+            <p class="offer-desc">Vous choisissez parmi mes templates et je le configure à votre image — couleurs, textes, photos.</p>
+            <ul class="offer-list">
+              <li>Livraison 5 jours</li>
+              <li>1 template au choix</li>
+              <li>Mise en ligne incluse</li>
+              <li>2 révisions</li>
+            </ul>
+            <a href="devis-cyber.html?sujet=template" class="offer-btn">Choisir ce plan →</a>
+          </div>
+
+          <div class="offer-card offer-featured">
+            <div class="offer-num">02</div>
+            <span class="offer-badge-featured">Populaire</span>
+            <h3 class="offer-title">Sur mesure</h3>
+            <p class="offer-desc">Développement 100% personnalisé à partir de votre brief. Design unique, code propre, responsive.</p>
+            <ul class="offer-list">
+              <li>Livraison 10–14 jours</li>
+              <li>Maquette validée avant code</li>
+              <li>Mise en ligne + nom de domaine</li>
+              <li>Révisions illimitées</li>
+            </ul>
+            <a href="devis-cyber.html?sujet=sur-mesure" class="offer-btn">Choisir ce plan →</a>
+          </div>
+
+          <div class="offer-card">
+            <div class="offer-num">03</div>
+            <h3 class="offer-title">PDF → Site</h3>
+            <p class="offer-desc">Vous avez un PDF, une maquette Figma, ou une idée précise ? Je la retranscris en site web.</p>
+            <ul class="offer-list">
+              <li>Livraison 7–10 jours</li>
+              <li>Fidèle à votre document</li>
+              <li>Responsive & optimisé</li>
+              <li>3 révisions</li>
+            </ul>
+            <a href="devis-cyber.html?sujet=pdf-site" class="offer-btn">Choisir ce plan →</a>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── TEMPLATES (site2) ── -->
+      <section class="cyber-section" id="templates" data-section-id="templates">
+        <h2 class="cyber-section-title"><span class="mono-span">&gt;</span> Templates disponibles</h2>
+        <div class="templates-grid">
+
+          <div class="template-card">
+            <div class="template-preview tp-minimal">
+              <div class="tp-bar" style="background:#222"></div>
+              <div class="tp-line"></div>
+              <div class="tp-line short"></div>
+            </div>
+            <span class="template-name">Minimal</span>
+          </div>
+
+          <div class="template-card">
+            <div class="template-preview tp-bold">
+              <div class="tp-big-text">A.</div>
+              <div class="tp-bar" style="background:#fff; width:50%; height:2px"></div>
+            </div>
+            <span class="template-name">Bold</span>
+          </div>
+
+          <div class="template-card">
+            <div class="template-preview tp-grid">
+              <div class="tp-cell tall"></div>
+              <div class="tp-cell"></div>
+              <div class="tp-cell"></div>
+            </div>
+            <span class="template-name">Grid</span>
+          </div>
+
+          <div class="template-card">
+            <div class="template-preview" style="background:#0a0a0a">
+              <div style="font-family:monospace;font-size:1.8rem;color:#00ff88">{ }</div>
+              <div class="tp-bar" style="background:#00ff88; opacity:0.4; width:60%"></div>
+            </div>
+            <span class="template-name">Dev</span>
+          </div>
+
+          <div class="template-card">
+            <div class="template-preview" style="background:linear-gradient(135deg,#1a1a2e,#16213e)">
+              <div style="font-size:2rem">✦</div>
+              <div class="tp-bar" style="background:rgba(255,255,255,0.4); width:55%"></div>
+            </div>
+            <span class="template-name">Étoile</span>
+          </div>
+
+          <div class="template-card template-card-cta">
+            <div class="template-cta-inner">
+              <div class="plus-sign">+</div>
+              <span>Votre idée</span>
+            </div>
+            <span class="template-name">Sur mesure</span>
+          </div>
+
+        </div>
+        <p class="templates-note">Chaque template est entièrement personnalisable en couleurs, typographie et contenu.</p>
+      </section>
+
+      <!-- ── RÉALISATIONS ── -->
+      <section class="cyber-section" id="portfolio" data-section-id="portfolio">
+        <h2 class="cyber-section-title"><span class="mono-span">&gt;</span> Réalisations</h2>
+        <div class="portfolio-grid">
+          <div class="portfolio-card">
+            <div class="portfolio-card__placeholder">
+              <span class="emoji">🎨</span>
+              <span class="label">Portfolio artiste</span>
+            </div>
+            <div class="portfolio-card__overlay">
+              <p class="portfolio-card__name">Leïla M. — Peintre</p>
+              <span class="portfolio-card__type">Template Bold · Sur mesure</span>
+            </div>
+          </div>
+          <div class="portfolio-card">
+            <div class="portfolio-card__placeholder">
+              <span class="emoji">📸</span>
+              <span class="label">Portfolio photographe</span>
+            </div>
+            <div class="portfolio-card__overlay">
+              <p class="portfolio-card__name">Thomas R. — Photographe</p>
+              <span class="portfolio-card__type">Template Grid · Personnalisé</span>
+            </div>
+          </div>
+          <div class="portfolio-card">
+            <div class="portfolio-card__placeholder">
+              <span class="emoji">💻</span>
+              <span class="label">Portfolio dev</span>
+            </div>
+            <div class="portfolio-card__overlay">
+              <p class="portfolio-card__name">Nora K. — Dev front-end</p>
+              <span class="portfolio-card__type">Template Dev · Sur mesure</span>
+            </div>
+          </div>
+          <div class="portfolio-card">
+            <div class="portfolio-card__placeholder">
+              <span class="emoji">✍️</span>
+              <span class="label">Portfolio rédactrice</span>
+            </div>
+            <div class="portfolio-card__overlay">
+              <p class="portfolio-card__name">Sarah D. — Copywriter</p>
+              <span class="portfolio-card__type">Template Minimal · Personnalisé</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── MA MÉTHODE (bulles reliées site1) ── -->
+      <section class="cyber-section" id="methode" data-section-id="methode">
+        <h2 class="cyber-section-title"><span class="mono-span">&gt;</span> Ma méthode</h2>
+        <div class="process-steps">
+
+          <div class="process-step">
+            <div class="process-step__num">01</div>
+            <p class="process-step__title">Brief</p>
+            <p class="process-step__desc">On échange par mail. Je comprends vos besoins, votre style, votre public cible.</p>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__num">02</div>
+            <p class="process-step__title">Devis</p>
+            <p class="process-step__desc">Devis détaillé et planning de livraison. Gratuit, sans engagement.</p>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__num">03</div>
+            <p class="process-step__title">Design</p>
+            <p class="process-step__desc">Maquette soumise pour validation avant de coder. Modifiez si besoin.</p>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__num">04</div>
+            <p class="process-step__title">Code</p>
+            <p class="process-step__desc">Développement propre, responsive, optimisé. Vous suivez l'avancement.</p>
+          </div>
+
+          <div class="process-step">
+            <div class="process-step__num">05</div>
+            <p class="process-step__title">Livraison</p>
+            <p class="process-step__desc">Mise en ligne, fichiers sources, formation si besoin. Clé en main.</p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ── CTA FINAL "PRÊT·E À LANCER ?" (site1) ── -->
+      <div class="cyber-devis">
+        <div class="cyber-devis__text">
+          <h2 class="cyber-devis__title">
+            Prêt·e à lancer<br>
+            <span class="accent">votre cyberfolio ?</span>
+          </h2>
+          <p class="cyber-devis__sub">Un devis gratuit, sans engagement, sous 48h. Décrivez-moi votre projet et je vous propose la meilleure solution.</p>
+        </div>
+        <a href="devis-cyber.html" class="btn-cyber">
+          <span>Demander un devis</span>
+          <span>→</span>
+        </a>
+      </div>
+
+    </main>
+  </div><!-- /cyber-layout -->
+
+  <footer class="footer-inner footer-cyber">
+    <p>&copy; 2025 TryHookMe · <a href="mailto:contact@tryhookme.fr">contact@tryhookme.fr</a></p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/cyberfolio.js"></script>
+</body>
+</html>

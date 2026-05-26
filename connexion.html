@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Connexion – TryHookMe</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/pages.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+</head>
+<body class="page-login page-boutique">
+
+  <!-- NAVBAR minimale -->
+  <nav class="navbar navbar-craft" id="navbar">
+    <a href="index.html" class="logo">
+      <span class="logo-hook">try</span><span class="logo-hook-accent">hook</span><span class="logo-me">me</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="boutique.html">Boutique</a></li>
+      <li><a href="cyberfolio.html">Cyberfolio</a></li>
+    </ul>
+    <div class="nav-actions">
+      <a href="panier.html" class="nav-icon" aria-label="Panier">
+        🛒<span class="cart-badge" id="cart-count">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- PAGE CONNEXION -->
+  <div class="login-page">
+    <div class="login-card">
+
+      <h1 class="login-title">Connexion</h1>
+      <p class="login-sub">Accédez à vos favoris et commandes sauvegardées</p>
+
+      <!-- OAuth -->
+      <button class="oauth-btn" id="btn-google">
+        <span class="oauth-icon">
+          <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#4285F4" d="M47.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h13.2c-.6 3-2.3 5.5-4.9 7.2v6h7.9c4.6-4.2 7.3-10.5 7.3-17.2z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.9-6c-2.1 1.4-4.8 2.2-8 2.2-6.1 0-11.3-4.1-13.2-9.7H2.7v6.2C6.7 42.8 14.8 48 24 48z"/><path fill="#FBBC05" d="M10.8 28.7c-.5-1.4-.7-2.9-.7-4.7s.3-3.3.7-4.7v-6.2H2.7C1 16.3 0 20 0 24s1 7.7 2.7 10.9l8.1-6.2z"/><path fill="#EA4335" d="M24 9.5c3.4 0 6.5 1.2 8.9 3.5l6.6-6.6C35.9 2.6 30.5 0 24 0 14.8 0 6.7 5.2 2.7 13.1l8.1 6.2c1.9-5.6 7.1-9.8 13.2-9.8z"/></svg>
+        </span>
+        <span>Continuer avec Google</span>
+      </button>
+
+      <button class="oauth-btn" id="btn-microsoft">
+        <span class="oauth-icon">
+          <svg width="18" height="18" viewBox="0 0 21 21"><rect x="1" y="1" width="9" height="9" fill="#f25022"/><rect x="11" y="1" width="9" height="9" fill="#7fba00"/><rect x="1" y="11" width="9" height="9" fill="#00a4ef"/><rect x="11" y="11" width="9" height="9" fill="#ffb900"/></svg>
+        </span>
+        <span>Continuer avec Microsoft</span>
+      </button>
+
+      <button class="oauth-btn" id="btn-facebook">
+        <span class="oauth-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#1877f2"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>
+        </span>
+        <span>Continuer avec Facebook</span>
+      </button>
+
+      <!-- Séparateur -->
+      <div class="login-divider">ou avec votre e-mail</div>
+
+      <!-- Formulaire email -->
+      <div class="login-email-form">
+        <input type="email" class="login-input" id="login-email" placeholder="votre@email.fr" />
+        <input type="password" class="login-input" id="login-password" placeholder="Mot de passe" />
+        <button class="login-submit" id="btn-email-login">Se connecter →</button>
+      </div>
+
+      <!-- Retour -->
+      <a href="index.html" class="login-back">← Retour à l'accueil</a>
+
+      <div class="login-legal">
+        En vous connectant, vous acceptez nos <a href="#" style="color:var(--craft-accent)">conditions d'utilisation</a>.
+        Les boutons OAuth nécessitent une intégration backend (Firebase Auth, Auth0…).
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Les boutons OAuth sont visuellement prêts.
+    // Pour les rendre fonctionnels : intégrez Firebase Authentication,
+    // Auth0, ou NextAuth.js côté serveur.
+    ['btn-google','btn-microsoft','btn-facebook'].forEach(id => {
+      document.getElementById(id)?.addEventListener('click', () => {
+        alert('🔧 Connexion OAuth à configurer\n\nIntégrez Firebase Auth ou Auth0 pour activer Google / Microsoft / Facebook.\n\nDocs : firebase.google.com/products/auth');
+      });
+    });
+
+    document.getElementById('btn-email-login')?.addEventListener('click', () => {
+      const email = document.getElementById('login-email').value;
+      const pass  = document.getElementById('login-password').value;
+      if (!email || !pass) {
+        alert('Veuillez remplir votre email et mot de passe.');
+        return;
+      }
+      alert('🔧 Authentification email à connecter côté serveur.\n\nSuggestion : Firebase Auth (gratuit) ou Supabase Auth.');
+    });
+  </script>
+</body>
+</html>
