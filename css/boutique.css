@@ -250,7 +250,7 @@
   background: #fff;
   border: 1px solid var(--craft-border);
   border-radius: var(--radius-md);
-  overflow: visible;
+  overflow: hidden;
   transition: transform 0.25s, box-shadow 0.25s;
   display: flex;
   flex-direction: column;
