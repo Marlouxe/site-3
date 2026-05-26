@@ -109,42 +109,64 @@
     const clearBtn  = document.getElementById('clear-cart');
 
     function renderCart() {
-      listEl.innerHTML = '';
-      if (cart.length === 0) {
-        emptyDiv.style.display  = 'block';
-        filledDiv.style.display = 'none';
-        updateCartBadge();
-        return;
-      }
-      emptyDiv.style.display  = 'none';
-      filledDiv.style.display = 'block';
+  listEl.innerHTML = '';
+  if (cart.length === 0) {
+    emptyDiv.style.display  = 'block';
+    filledDiv.style.display = 'none';
+    updateCartBadge();
+    return;
+  }
+  emptyDiv.style.display  = 'none';
+  filledDiv.style.display = 'block';
+  let total = 0;
+  cart.forEach((item, i) => {
+    const qty = item.qty || 1;
+    total += parseInt(item.price || 0) * qty;
+    const row = document.createElement('div');
+    row.className = 'cart-item';
+    row.innerHTML = `
+      <span class="cart-item-name">${item.name}</span>
+      <div class="cart-item-qty">
+        <button class="qty-btn qty-minus" data-idx="${i}">−</button>
+        <span class="qty-val">${qty}</span>
+        <button class="qty-btn qty-plus" data-idx="${i}">+</button>
+      </div>
+      <span class="cart-item-price">${item.price * qty} €</span>
+      <button class="cart-item-remove" data-idx="${i}" aria-label="Retirer">✕</button>`;
+    listEl.appendChild(row);
+  });
 
-      let total = 0;
-      cart.forEach((item, i) => {
-        total += parseInt(item.price || 0);
-        const row = document.createElement('div');
-        row.className = 'cart-item';
-        row.innerHTML = `
-          <span class="cart-item-name">${item.name}</span>
-          <span class="cart-item-price">À partir de ${item.price} €</span>
-          <button class="cart-item-remove" data-idx="${i}" aria-label="Retirer">✕</button>`;
-        listEl.appendChild(row);
-      });
+  totalEl.textContent = 'à partir de ' + total + ' €';
 
-      totalEl.textContent = 'à partir de ' + total + ' €';
+  listEl.querySelectorAll('.cart-item-remove').forEach(btn => {
+    btn.addEventListener('click', () => {
+      cart.splice(parseInt(btn.dataset.idx), 1);
+      localStorage.setItem('thm_cart', JSON.stringify(cart));
+      showToast('Article retiré du panier');
+      renderCart();
+    });
+  });
 
-      // Boutons supprimer
-      listEl.querySelectorAll('.cart-item-remove').forEach(btn => {
-        btn.addEventListener('click', () => {
-          cart.splice(parseInt(btn.dataset.idx), 1);
-          localStorage.setItem('thm_cart', JSON.stringify(cart));
-          showToast('Article retiré du panier');
-          renderCart();
-        });
-      });
+  listEl.querySelectorAll('.qty-plus').forEach(btn => {
+    btn.addEventListener('click', () => {
+      cart[parseInt(btn.dataset.idx)].qty = (cart[parseInt(btn.dataset.idx)].qty || 1) + 1;
+      localStorage.setItem('thm_cart', JSON.stringify(cart));
+      renderCart();
+    });
+  });
 
-      updateCartBadge();
-    }
+  listEl.querySelectorAll('.qty-minus').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const i = parseInt(btn.dataset.idx);
+      cart[i].qty = (cart[i].qty || 1) - 1;
+      if (cart[i].qty <= 0) cart.splice(i, 1);
+      localStorage.setItem('thm_cart', JSON.stringify(cart));
+      renderCart();
+    });
+  });
+
+  updateCartBadge();
+}
 
     // Vider tout
     if (clearBtn) {
