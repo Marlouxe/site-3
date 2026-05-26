@@ -250,7 +250,7 @@
   background: #fff;
   border: 1px solid var(--craft-border);
   border-radius: var(--radius-md);
-  overflow: hidden;
+  overflow: visible;
   transition: transform 0.25s, box-shadow 0.25s;
   display: flex;
   flex-direction: column;
@@ -263,7 +263,7 @@
 .product-img-wrap {
   position: relative;
   aspect-ratio: 4/3;
-  overflow: visible;;
+  overflow: hidden;
   background: var(--craft-bg-alt);
 }
 .product-img {
@@ -314,7 +314,7 @@
   align-items: center;
   justify-content: center;
   transition: transform 0.2s, background 0.2s;
-  z-index: 10;
+  z-index: 20;
   pointer-events: all;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }

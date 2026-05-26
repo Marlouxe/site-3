@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     { id:'2', name:'Pull cosy sur mesure',         price:80,  badge:'Tricot',   badgeClass:'badge-tricot',   emoji:'🧣', cat:'tricot vetements',     desc:'Pull tricoté main, laine douce, coloris & taille au choix.' },
     { id:'3', name:'Tableau brodé personnalisé',   price:45,  badge:'Broderie', badgeClass:'badge-broderie', emoji:'🪡', cat:'broderie decoration',  desc:'Portrait, paysage, citation — tout est possible sur tissu.' },
     { id:'4', name:'Sac cabas crocheté',           price:30,  badge:'Crochet',  badgeClass:'',               emoji:'👜', cat:'crochet accessoires',  desc:'Sac tressé léger, idéal marché ou plage. Couleur au choix.' },
-    { id:'5', name:'Bonnet & écharpe assortis',    price:40,  badge:'Tricot',   badgeClass:'badge-tricot',   emoji:'🧢', cat:'tricot accessoires',   desc:'Ensemble tricoté main, douillet pour l'hiver. Personnalisable.' },
+    { id:'5', name:'Bonnet & écharpe assortis',    price:40,  badge:'Tricot',   badgeClass:'badge-tricot',   emoji:'🧢', cat:'tricot accessoires',   desc:'Ensemble tricoté main, douillet pour l\'hiver. Personnalisable.' },
     { id:'6', name:'Personnalisation vêtement',    price:20,  badge:'Broderie', badgeClass:'badge-broderie', emoji:'👕', cat:'broderie accessoires vetements', desc:'Envoyez votre vêtement, on y brode votre motif. Unique.' },
   ];
 
